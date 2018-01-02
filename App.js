@@ -1,33 +1,36 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-// import RootNavigator from 'navigators/RootNavigator';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start ng on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-          <Button
-              onPress={() => navigation.navigate('Details')}
-            title="Go to details"
-          />
+const HomeScreen = ({ navigation }) => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Home Screen</Text>
+    <Button
+      onPress={() => navigation.navigate('Details')}
+      title="Go to details"
+    />
+  </View>
+);
 
-      </View>
+const DetailsScreen = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Details Screen</Text>
+  </View>
+);
 
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const RootNavigator = StackNavigator({
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: {
+      headerTitle: 'Home',
+    },
+  },
+  Details: {
+    screen: DetailsScreen,
+    navigationOptions: {
+      headerTitle: 'Details',
+    },
   },
 });
 
-
+export default RootNavigator;
