@@ -1,33 +1,68 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, PropTypes } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Nav from '../nav/Nav';
+import Card from './Card';
 
-export default class App extends React.Component {
-  static navigationOptions = {
-    title: 'Welcome',
-  };
-  render() {
-    const { navigate } = this.props.navigation;
-    return (
+class Home extends React.Component{
+  constructor(props, context){
+    super(props, context);
+    this.state = {};
+    this.buttonPress = this.buttonPress.bind(this);
+  }
+
+  componentDidMount() {
+    
+  }
+
+  widget(){
+    return(
+          <View>    
+            <TouchableOpacity
+              onPress={() => navigate('Detail')}
+            >
+            <Image 
+              source={{uri: 'https://facebook.github.io/react/logo-og.png'}}
+              style={{width: 400, height: 400}} />
+            </TouchableOpacity> 
+          </View>
+      )
+  }
+
+  buttonPress(){         
+      this.props.playButtonClicked(this.props.drill)
+  }
+
+
+  render(){
+    const drillProps = this.props;  
+    const { navigate } = this.props.navigation; 
+    return(
       <View>
-        <Text>Hello, Chat App!</Text>
-        <Button
-          onPress={() => navigate('Detail')}
-          title="Chat with Lucy"
-        />
+        <ScrollView> 
+          <View>    
+            <TouchableOpacity
+              onPress={() => navigate('Detail')}
+            >
+            <Image 
+              source={{uri: 'https://facebook.github.io/react/logo-og.png'}}
+              style={{width: 400, height: 400}} />
+            </TouchableOpacity> 
+          </View>
+          <Card/>        
+          {this.widget()}
+        </ScrollView>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+Home.propTypes={
+  // author: PropTypes.string,  
+  // name: PropTypes.string,  
+  // description: PropTypes.string,  
+  // playButtonClicked: PropTypes.func,
+};
 
+export default Home;
 

@@ -6,14 +6,15 @@ const Nav = StackNavigator({
   Home: {
     screen: Home,
     navigationOptions: {
-      headerTitle: 'Home',
+      headerTitle: 'Our Apps',
     },
   },
   Detail: {
     screen: Detail,
     navigationOptions: {
-      headerTitle: 'Details',
+      headerTitle: 'Project Name',
     },
   },
 });
+
 export default Nav;
